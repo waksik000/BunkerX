@@ -1,6 +1,17 @@
 import styles from './game-page.module.css'
+import generateCard from '../lib/generateCards'
+import { useState } from 'react'
+
 
 export default function GamePage() {
+  const [card,setCard] = useState(null)
+
+  function handleGenerateCard() {
+    const card = generateCard()
+    setCard(card)
+  }
+
+
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -36,9 +47,22 @@ export default function GamePage() {
             </ul>
           </div>
 
-          <button className={styles.submitBtn}>
+          <button className={styles.submitBtn} onClick={handleGenerateCard}>
             Создать игру
           </button>
+
+          {!card ? <p>Нет карточек</p> :(
+            <div>
+              <h3>{card.profession}</h3>
+              <p>{card.health}</p>
+              <p>{card.hobbie}</p>
+              <p>{card.baggage}</p>
+              <p>{card.biology}</p>
+              <p>{card.trait}</p>
+            </div>
+          )}
+
+
         </div>
       </div>
     </div>

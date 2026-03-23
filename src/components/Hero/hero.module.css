@@ -55,3 +55,94 @@
   border-radius: 16px;
   box-shadow: 0 14px 40px rgba(18, 24, 46, 0.2);
 }
+
+@media (max-width: 1024px) {
+  .hero {
+    margin: 3.2rem auto 1.2rem;
+  }
+
+  .title {
+    font-size: 50px;
+    line-height: 68px;
+  }
+
+  .subtitle {
+    font-size: 21px;
+    line-height: 30px;
+    margin-bottom: 1.5rem;
+  }
+
+  .button {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .media {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    margin: 2.2rem auto 1rem;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 40px;
+    line-height: 54px;
+    margin-bottom: 0.7rem;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 1.3rem;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 320px;
+    font-size: 18px;
+    line-height: 26px;
+    padding: 0.75rem 1.2rem;
+  }
+
+  .media {
+    height: 220px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    margin: 1.6rem auto 0.9rem;
+    padding: 0 0.8rem;
+    gap: 1.25rem;
+  }
+
+  .title {
+    font-size: 34px;
+    line-height: 44px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 1.1rem;
+  }
+
+  .button {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 8px;
+    padding: 0.72rem 1rem;
+  }
+
+  .media {
+    height: 170px;
+    border-radius: 10px;
+  }
+}

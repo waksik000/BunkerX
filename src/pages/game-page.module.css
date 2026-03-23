@@ -141,17 +141,100 @@
   background: var(--hover-color);
 }
 
+@media (max-width: 1024px) {
+  .container h2 {
+    font-size: 34px;
+    line-height: 48px;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+  }
+
+  .form {
+    padding: 2rem;
+  }
+
+  .submitBtn {
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+
 @media (max-width: 640px) {
+  .page {
+    padding: 1.4rem 0.8rem;
+  }
+
+  .container h2 {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 1.5rem;
+  }
+
   .container {
     padding: 0;
   }
 
   .form {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 10px;
   }
 
   .submitBtn {
-    font-size: 18px;
-    padding: 0.75rem 1.5rem;
+    font-size: 17px;
+    line-height: 24px;
+    padding: 0.72rem 1.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .page {
+    padding: 1rem 0.7rem;
+  }
+
+  .container h2 {
+    font-size: 23px;
+    line-height: 32px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .form {
+    padding: 1rem;
+  }
+
+  .label {
+    margin-bottom: 0.35rem;
+  }
+
+  .input {
+    font-size: 15px;
+    padding: 0.68rem 0.8rem;
+  }
+
+  .info {
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .infoList li {
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 0.45rem;
+    padding-left: 1.15rem;
+  }
+
+  .submitBtn {
+    font-size: 16px;
+    line-height: 22px;
   }
 }
