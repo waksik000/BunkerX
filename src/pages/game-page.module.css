@@ -1,0 +1,157 @@
+.page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.container h2 {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 57px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.2px;
+  color: var(--secondary-text-color);
+  margin-bottom: 2.5rem;
+}
+
+.form {
+  background: var(--light-text-color);
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 12px rgba(20, 33, 68, 0.08);
+  text-align: left;
+}
+
+.formGroup {
+  margin-bottom: 2rem;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--muted-color);
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  color: var(--text-color);
+  background: var(--light-text-color);
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.input::placeholder {
+  color: var(--muted-color);
+}
+
+.info {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(35, 166, 240, 0.05);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.info h6 {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoList li {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: var(--text-color);
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.infoList li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--success-color);
+  font-weight: 700;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.9rem 1.7rem;
+  background: var(--primary-color);
+  color: var(--light-text-color);
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.submitBtn:hover {
+  background: var(--hover-color);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0;
+  }
+
+  .form {
+    padding: 1.5rem;
+  }
+
+  .submitBtn {
+    font-size: 18px;
+    padding: 0.75rem 1.5rem;
+  }
+}

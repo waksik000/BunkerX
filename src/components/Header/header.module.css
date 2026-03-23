@@ -1,0 +1,82 @@
+.header {
+  background: #ffffff;
+  box-shadow: 0 4px 17px rgba(20, 33, 68, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.inner {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.logoText {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--text-color);
+}
+
+.logoAccent {
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--primary-color);
+}
+
+.nav {
+  flex: 1;
+  margin-left: 2.5rem;
+}
+
+.links {
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+}
+
+.link {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--secondary-text-color);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--text-color);
+}
+
+.profile {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: var(--primary-color);
+  color: var(--light-text-color);
+  padding: 0.58rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+}
+
+.profile:hover {
+  background: var(--hover-color);
+}
