@@ -1,162 +1,60 @@
-# BunkerX — карточки “игры в бункер”
+# BunkerX - Генератор карточек для игры в бункере
 
-Простой SPA на React + Vite, где пользователь создаёт игру, задаёт количество игроков и получает:
-- сгенерированные наборы карт
-- сценарий катастрофы и условия бункера
-- уникальные ссылки на игрока
+**BunkerX** — это веб-приложение для генерации уникальных карточек игроков в игровой сценарий "бункер". Идеально подходит для дружеских игр, где каждый получает персональную роль и набор характеристик.
 
-Пример URL:
-- `site.com/game/abc123/player/1`
-- `site.com/game/abc123/player/2`
+## 📌 Функционал
 
----
+- Создание игры с указанием количества игроков (1–12).
+- Генерация уникальных карточек для каждого участника:
+  - Профессия, здоровье, хобби, багаж, биология, черта характера, фобия, факт.
+- Персональные ссылки для каждого игрока.
+- Минималистичный интерфейс с акцентом на белый и голубой цвета.
+- Навигация между страницами без перезагрузки (SPA) через React Router DOM.
 
-## Проектная идея
+## ⚡ Страницы
 
-`BunkerX` — не полноценная игра, а генератор игровых карточек для условной ролевой «игры в бункер».
+1. **Главная** (`/`)  
+   Приветствие и кнопка "Начать игру".
+2. **Генератор карточек** (`/game`)  
+   Ввод количества игроков, генерация карточек и отображение ссылок на них.
+3. **Карточка игрока** (`/game/:gameId/player/:playerId`)  
+   Просмотр подробной карточки игрока с его характеристиками.
 
-Пользователь:
-1. Нажимает “Начать игру”
-2. Указывает количество участников
-3. Получает `gameId` (например `abc123`) + генерирует набор карточек
-4. Получает уникальные ссылки для каждого игрока:
-   - `/game/:gameId/player/:playerId`
+## 🛠 Технологии
 
-На странице игрока отображается его индивидуальный кит:
-- роль / статус
-- задача / цель
-- ресурсная карта
+- React 18+
+- React Router DOM
+- CSS Modules
+- LocalStorage для хранения сгенерированных игр
 
----
+## 🚀 Как запустить
 
-## Как сделать переход на следующий экран
-
-1) Установите роутер:
+1. Клонируйте репозиторий:
 
 ```bash
-npm install react-router-dom
-```
-
-2) Оберните приложение в `BrowserRouter` (`src/main.jsx`):
-
-```jsx
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import App from './App'
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-)
-```
-
-3) Определите маршруты (`src/App.jsx`):
-
-```jsx
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import Hero from './components/Hero/Hero'
-import GameCreate from './pages/GameCreate'
-import PlayerPage from './pages/PlayerPage'
-
-function App() {
-  return (
-    <div className="page">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/game/create" element={<GameCreate />} />
-        <Route path="/game/:gameId/player/:playerId" element={<PlayerPage />} />
-      </Routes>
-      <Footer />
-    </div>
-  )
-}
-
-export default App
-```
-
-4) Кнопка “Начать игру” (`Hero`) — переход на страницу создания:
-
-```jsx
-import { useNavigate } from 'react-router-dom'
-
-export default function Hero() {
-  const navigate = useNavigate()
-
-  return (
-    <button onClick={() => navigate('/game/create')}>Начать игру</button>
-  )
-}
-```
-
----
-
-## Пример логики создания игры (`GameCreate`)
-
-- Программно создан `gameId` (например `nanoid()`)
-- На входе число игроков
-- Генерация массива карточек
-- Редирект игрока на `player/1`:
-
-```jsx
-import { useNavigate } from 'react-router-dom'
-import { nanoid } from 'nanoid'
-
-function GameCreate() {
-  const navigate = useNavigate()
-
-  const onSubmit = (playersCount) => {
-    const gameId = nanoid(6)
-    const cards = generateCards(playersCount)
-    const newGame = { gameId, cards }
-    localStorage.setItem(`game_${gameId}`, JSON.stringify(newGame))
-    navigate(`/game/${gameId}/player/1`)
-  }
-
-  ...
-}
-```
-
-5) Страница `PlayerPage` извлекает `gameId` и `playerId` из `useParams` и рендерит индивидуальную карту.
-
----
-
-## English project description
-
-### Concept
-
-BunkerX is a card generator app for a “bunker game”. User chooses player count, app generates a scenario, assigns cards, and provides per-player URLs.
-
-### Flow
-
-1. Landing page with **Start game** button
-2. Game creation page (players count)
-3. Generating cards + `gameId`
-4. Player page: `/game/:gameId/player/:playerId`
-
-### Data
-
-- `gameId` in URL
-- cards array per player
-- unique player link
-
----
-
-## Styles
-
-- Font: Montserrat 400/500/600/700/800/900
-- Colors: primary `#23A6F0`, text `#252B42`, secondary `#737373`, hover `#2A7CC7`, etc.
-
----
-
-## Run
-
-```bash
+git clone https://github.com/username/bunkerx.git
+cd bunkerx
+Установите зависимости:
 npm install
+Запустите локальный сервер:
 npm run dev
+Откройте в браузере:
+http://localhost:5173
 ```
 
+## ⚠ Важно
+
+На данный момент приложение использует localStorage для хранения игр.
+
+Ссылки работают только на том же устройстве, где была создана игра.
+Для работы на разных устройствах потребуется подключение backend (например, Firebase или Node.js сервер с базой данных).
+
+
+## 🎨 Дизайн
+Минимализм и чистые формы
+Акцент на белом фоне с голубыми ссылками и кнопками
+Адаптивный интерфейс для мобильных устройств
+## 🔗 Ссылки
+Главная: /
+Генератор карточек: /game
+Просмотр карточки: /game/:gameId/player/:playerId
