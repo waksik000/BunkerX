@@ -141,6 +141,69 @@
   background: var(--hover-color);
 }
 
+/* Блок с листом карточек */
+.cardsList{
+  margin-top: 2rem;
+}
+.cardsStatus {
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--secondary-text-color);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.playerCardLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--light-text-color);
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 8px rgba(20, 33, 68, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.playerCardLink:hover {
+  box-shadow: 0 4px 16px rgba(20, 33, 68, 0.12);
+}
+
+.playerCardLink span {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.playerCardLink a {
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.playerCardLink a:hover {
+  color: var(--hover-color);
+}
+
+
+
+/* Ошибки */
+.errorMessage {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--danger-color);
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+
+
+
+
+
 @media (max-width: 1024px) {
   .container h2 {
     font-size: 34px;

@@ -1,4 +1,5 @@
 import traits from '../data/cards/traits.json'
+import { nanoid } from 'nanoid';
 function generateCard() {
     const profession = traits.professions[Math.floor(Math.random() * traits.professions.length)];
     const health = traits.health[Math.floor(Math.random() * traits.health.length)];
@@ -8,8 +9,9 @@ function generateCard() {
     const trait = traits.traits[Math.floor(Math.random() * traits.traits.length)];
     const phobia = traits.phobias[Math.floor(Math.random() * traits.phobias.length)];
     const fact = traits.facts[Math.floor(Math.random() * traits.facts.length)];
-
+    const playerId = nanoid()
         return {
+            playerId,
             profession,
             health,
             hobby,
@@ -26,9 +28,7 @@ export default function generateCards(playersCount) {
     const cards = []
 
     for (let i = 0; i< playersCount; i++) {
-        const card = generateCard()
-        card.playerId = i+1
-        cards.push(card)
+        cards.push(generateCard())
     }
 
     return cards

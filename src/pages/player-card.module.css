@@ -1,0 +1,45 @@
+.playerCardPage {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--light-text-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(20, 33, 68, 0.08);
+}
+
+.playerCardPage h2 {
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.playerCardPage ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playerCardPage li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid #f0f2f5;
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.playerCardPage li:last-child {
+  border-bottom: none;
+}
+
+/* Сообщение об ошибке на карточке */
+.playerCardError {
+  font-family: var(--font-family-base);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--danger-color);
+  text-align: center;
+  margin-top: 2rem;
+}

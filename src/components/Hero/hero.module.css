@@ -56,6 +56,8 @@
   box-shadow: 0 14px 40px rgba(18, 24, 46, 0.2);
 }
 
+
+
 @media (max-width: 1024px) {
   .hero {
     margin: 3.2rem auto 1.2rem;
