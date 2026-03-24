@@ -1,14 +1,29 @@
 import styles from './game-page.module.css'
-import generateCard from '../lib/generateCards'
+import generateCards from '../lib/generateCards'
 import { useState } from 'react'
 
 
 export default function GamePage() {
-  const [card,setCard] = useState(null)
+  const [cards,setCards] = useState(null)
+  const [error, setError] = useState('')
+  const [playersCount, setPlayersCount] = useState(0)
 
-  function handleGenerateCard() {
-    const card = generateCard()
-    setCard(card)
+  function handleStartGame() {
+    const gameId = crypto.randomUUID()
+    if (!Number.isNaN(playersCount) && playersCount<=12 && playersCount>0){
+      const generatedCards = generateCards(playersCount)
+      setCards(generatedCards)
+      setError('')
+      const gameStats = {
+        gameId:gameId,
+        playersCount:playersCount,
+        cards:generatedCards
+      }
+      console.log('saving', gameStats)
+      localStorage.setItem(`game_${gameId}`, JSON.stringify(gameStats))
+    } else {
+      setError('Некорректное число. Пожалуйста введите число от 1 до 12')
+    }
   }
 
 
@@ -23,6 +38,7 @@ export default function GamePage() {
 
         <div className={styles.form}>
           <div className={styles.formGroup}>
+            {error && <p>{error}</p>}
             <label htmlFor="players" className={styles.label}>
               Количество игроков
             </label>
@@ -30,9 +46,10 @@ export default function GamePage() {
               type="number" 
               id="players" 
               className={styles.input}
-              min="2"
-              max="10"
-              defaultValue="4"
+              min="1"
+              max="12"
+              value={playersCount}
+              onChange={(e) => setPlayersCount(Number(e.target.value))}
               placeholder="Выберите количество"
             />
           </div>
@@ -47,20 +64,27 @@ export default function GamePage() {
             </ul>
           </div>
 
-          <button className={styles.submitBtn} onClick={handleGenerateCard}>
+          <button className={styles.submitBtn} onClick={handleStartGame}>
             Создать игру
           </button>
 
-          {!card ? <p>Нет карточек</p> :(
-            <div>
-              <h3>{card.profession}</h3>
-              <p>{card.health}</p>
-              <p>{card.hobbie}</p>
-              <p>{card.baggage}</p>
-              <p>{card.biology}</p>
-              <p>{card.trait}</p>
+          {!cards ? <p>Карточки не сгенерированы</p> : cards.map((card, index) => (
+            <div key={card.playerId}>
+              <h3>Игрок {index+1}</h3>
+            <ul className={styles.list}>
+              <li>{card.profession}</li>
+              <li>{card.health}</li>
+              <li>{card.hobby}</li>
+              <li>{card.baggage}</li>
+              <li>{card.biology}</li>
+              <li>{card.trait}</li>
+              <li>{card.phobia}</li>
+              <li>{card.fact}</li>
+            </ul>
             </div>
-          )}
+          ))}
+
+          
 
 
         </div>
