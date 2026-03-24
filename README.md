@@ -32,7 +32,7 @@
 1. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/username/bunkerx.git
+git clone https://github.com/waksik000/bunkerX.git
 cd bunkerx
 Установите зависимости:
 npm install
