@@ -8,11 +8,24 @@ export default function generateBunker() {
   const bunkerThirdRoom = bunkersData.thirdRoom[Math.floor(Math.random() * bunkersData.thirdRoom.length)]
   const bunkerInventory = bunkersData.inventory[Math.floor(Math.random() * bunkersData.inventory.length)]
   const bunkerStoryInfo = bunkersData.storyInfo[Math.floor(Math.random() * bunkersData.storyInfo.length)]
+  
+
+
+  const usedAdditionalRooms = new Set()
 
   const additionalRoomsCount = Math.floor(Math.random() * 4) // от 0 до 3 дополнительных комнат
   for (let i = 0; i < additionalRoomsCount; i++){
-    bunkerAdditionalRooms.push(bunkersData.additionalRooms[Math.floor(Math.random() * bunkersData.additionalRooms.length)])
+    let newRoom = bunkersData.additionalRooms[Math.floor(Math.random() * bunkersData.additionalRooms.length)]
+    while (usedAdditionalRooms.has(newRoom)) {
+      newRoom = bunkersData.additionalRooms[Math.floor(Math.random() * bunkersData.additionalRooms.length)]
+    }
+    bunkerAdditionalRooms.push(newRoom)
+    usedAdditionalRooms.add(newRoom)
   }
+
+
+
+
   return {
     bunkerSize,
     bunkerLivingConditions,
