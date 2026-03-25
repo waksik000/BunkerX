@@ -1,5 +1,6 @@
 import styles from "./game-page.module.css";
 import generateCards from "../lib/generateCards";
+import generateBunker from "../lib/generateBunker";
 import { useState } from "react";
 
 export default function GamePage() {
@@ -7,8 +8,14 @@ export default function GamePage() {
   const [error, setError] = useState("");
   const [playersCount, setPlayersCount] = useState(0);
   const [gameId, setGameId] = useState(null);
+  const [bunkerData, setBunkerData] = useState(null);
 
   function handleStartGame() {
+  const bunkerData = generateBunker();
+  console.log("Сгенерированный бункер:", bunkerData);
+  setBunkerData(bunkerData);
+
+
   const newGameId = crypto.randomUUID(); 
   if (!Number.isNaN(playersCount) && playersCount <= 12 && playersCount > 0) {
     const generatedCards = generateCards(playersCount);
@@ -73,8 +80,27 @@ export default function GamePage() {
             Создать игру
           </button>
 
+          {!bunkerData ? (<p className={styles.bunkerStatus}>Бункер не сгенерирован</p>) : (
+            <div className={styles.bunkerInfo}>
+              <h3>Сгенерированный бункер:</h3>
+              <p><strong>Размер бункера:</strong> {bunkerData.bunkerSize}</p>
+              <p><strong>Условия проживания:</strong> {bunkerData.bunkerLivingConditions}</p>
+              <p><strong>Главная комната:</strong> {bunkerData.bunkerMainRoom}</p>
+              {bunkerData.bunkerAdditionalRooms.length <= 0 ? (<p> <strong>Дополнительных комнат нет</strong> </p>) : (
+                <ul>
+                  {bunkerData.bunkerAdditionalRooms.map((room, index) => (
+                    <li key={index}><strong>Дополнительная комната {index + 1}:</strong> {room}</li>
+                  ))}
+                </ul>
+              )}
+              <p><strong>Третья комната:</strong> {bunkerData.bunkerThirdRoom}</p>
+              <p><strong>Инвентарь:</strong> {bunkerData.bunkerInventory}</p>
+              <p><strong>Дополнительная информация:</strong> {bunkerData.bunkerStoryInfo}</p>
+            </div>
+          )}
+          
           {!cards ? (
-            <p className={styles.cardsStatus}>Карточки не сгенерированы</p>
+            <p className={styles.cardsStatus}>Карточки и бункер не сгенерированы</p>
           ) : (
             <div className={styles.cardsList}>
             {cards.map((card, index) => (

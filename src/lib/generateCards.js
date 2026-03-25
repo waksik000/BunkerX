@@ -25,10 +25,18 @@ function generateCard() {
 
 
 export default function generateCards(playersCount) {
+    if (playersCount > traits.professions.length) {
+        throw new Error(`Невозможно сгенерировать карточки для ${playersCount} игроков, так как профессий всего ${traits.professions.length}`)}
     const cards = []
-
+    const usedProfessions = new Set()
     for (let i = 0; i< playersCount; i++) {
-        cards.push(generateCard())
+        let newCard = generateCard()
+
+        while (usedProfessions.has(newCard.profession)) {
+          newCard = generateCard()
+        }
+        usedProfessions.add(newCard.profession)
+        cards.push(newCard)
     }
 
     return cards
