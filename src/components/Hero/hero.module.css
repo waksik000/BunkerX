@@ -2,14 +2,16 @@
   flex: 1;
   max-width: 1140px;
   width: 100%;
-  margin: 4rem auto 1.5rem;
+  margin: 3.5rem auto 2rem;
   padding: 0 1.5rem;
   display: grid;
-  gap: 2rem;
+  gap: 2.25rem;
 }
 
 .content {
   text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .title {
@@ -19,48 +21,102 @@
   line-height: 80px;
   letter-spacing: 0.2px;
   color: var(--text-color);
-  margin-bottom: 0.8rem;
+  margin: 0 0 1rem;
+  text-wrap: balance;
 }
 
 .subtitle {
   font-family: var(--font-family-base);
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 500;
+  font-size: 20px;
   line-height: 32px;
-  letter-spacing: 0.1px;
-  color: var(--text-color);
-  margin-bottom: 1.8rem;
+  letter-spacing: 0.2px;
+  color: var(--secondary-text-color);
+  margin: 0 auto 2rem;
+  max-width: 680px;
+  text-wrap: balance;
 }
 
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--primary-color);
   color: var(--light-text-color);
-  border-radius: 10px;
-  padding: 0.9rem 1.7rem;
+  border-radius: 14px;
+  padding: 0.95rem 1.8rem;
   font-family: var(--font-family-base);
   font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 18px;
+  line-height: 28px;
   letter-spacing: 0.1px;
   border: none;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(35, 166, 240, 0.22);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .button:hover {
   background: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(35, 166, 240, 0.28);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(35, 166, 240, 0.16),
+    0 18px 36px rgba(35, 166, 240, 0.28);
 }
 
 .media {
-  height: 320px;
-  background: #000;
+  position: relative;
+  min-height: 480px;
+  aspect-ratio: 16 / 9;
+  background-image: url('./1024.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 16px;
-  box-shadow: 0 14px 40px rgba(18, 24, 46, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(37, 43, 66, 0.08);
+  box-shadow: 0 18px 44px rgba(18, 24, 46, 0.16);
+  isolation: isolate;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
+.media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(27, 39, 73, 0.2)),
+    linear-gradient(90deg, rgba(27, 39, 73, 0.08), transparent 38%, rgba(27, 39, 73, 0.18));
+  z-index: 1;
+}
 
+.media::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(27, 39, 73, 0.3));
+  z-index: 1;
+}
+
+.media:hover {
+  transform: translateY(-3px);
+  border-color: rgba(35, 166, 240, 0.14);
+  box-shadow: 0 24px 54px rgba(18, 24, 46, 0.2);
+}
 
 @media (max-width: 1024px) {
   .hero {
-    margin: 3.2rem auto 1.2rem;
+    margin: 3rem auto 1.5rem;
   }
 
   .title {
@@ -69,9 +125,9 @@
   }
 
   .subtitle {
-    font-size: 21px;
+    font-size: 19px;
     line-height: 30px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
   }
 
   .button {
@@ -80,13 +136,13 @@
   }
 
   .media {
-    height: 280px;
+    min-height: 360px;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    margin: 2.2rem auto 1rem;
+    margin: 2.2rem auto 1.2rem;
     padding: 0 1rem;
     gap: 1.5rem;
   }
@@ -99,8 +155,8 @@
 
   .subtitle {
     font-size: 18px;
-    line-height: 27px;
-    margin-bottom: 1.3rem;
+    line-height: 28px;
+    margin-bottom: 1.4rem;
   }
 
   .button {
@@ -108,12 +164,14 @@
     max-width: 320px;
     font-size: 18px;
     line-height: 26px;
-    padding: 0.75rem 1.2rem;
+    padding: 0.82rem 1.2rem;
   }
 
   .media {
-    height: 220px;
+    min-height: 260px;
+    aspect-ratio: 4 / 3;
     border-radius: 12px;
+    background-position: center center;
   }
 }
 
@@ -132,19 +190,41 @@
   .subtitle {
     font-size: 16px;
     line-height: 24px;
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.25rem;
   }
 
   .button {
     max-width: 100%;
     font-size: 16px;
     line-height: 24px;
-    border-radius: 8px;
-    padding: 0.72rem 1rem;
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
   }
 
   .media {
-    height: 170px;
+    min-height: 210px;
+    aspect-ratio: 10 / 9;
     border-radius: 10px;
+    box-shadow: 0 14px 30px rgba(18, 24, 46, 0.14);
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    padding: 0 0.75rem;
+  }
+
+  .title {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .media {
+    min-height: 190px;
   }
 }
