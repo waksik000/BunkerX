@@ -1,6 +1,7 @@
 import { useState } from "react";
 import generateBunker from "../lib/generateBunker";
 import generateCards from "../lib/generateCards";
+import generateDisaster from "../lib/generateDisaster";
 import styles from "./game-page.module.css";
 
 export default function GamePage() {
@@ -9,6 +10,7 @@ export default function GamePage() {
   const [playersCount, setPlayersCount] = useState(0);
   const [gameId, setGameId] = useState(null);
   const [bunkerData, setBunkerData] = useState(null);
+  const [disasterData, setDisasterData] = useState(null);
 
   function handleStartGame() {
     const newGameId = crypto.randomUUID();
@@ -16,9 +18,11 @@ export default function GamePage() {
     if (!Number.isNaN(playersCount) && playersCount <= 12 && playersCount > 0) {
       const generatedBunker = generateBunker();
       const generatedCards = generateCards(playersCount);
+      const generatedDisaster = generateDisaster();
 
       setBunkerData(generatedBunker);
       setCards(generatedCards);
+      setDisasterData(generatedDisaster);
       setError("");
 
       const gameStats = {
@@ -80,7 +84,7 @@ export default function GamePage() {
               <h6>Что будет сгенерировано:</h6>
               <ul className={styles.infoList}>
                 <li>Уникальный бункер с деталями проживания</li>
-                <li>Место под сценарий катастрофы</li>
+                <li>Сценарий катастрофы с общей обстановкой</li>
                 <li>Индивидуальные карточки для каждого игрока</li>
                 <li>Персональные ссылки для участников</li>
               </ul>
@@ -168,7 +172,7 @@ export default function GamePage() {
                               <span className={styles.roomIndex}>
                                 {String(index + 1).padStart(2, "0")}
                               </span>
-                              <span>{room}</span>
+                              <span className={styles.roomText}>{room}</span>
                             </li>
                           ))}
                         </ul>
@@ -178,16 +182,19 @@ export default function GamePage() {
                 )}
               </div>
 
-              <div className={styles.panel}>
+              <div className={`${styles.panel} ${styles.panelDisaster}`}>
                 <div className={styles.panelHeader}>
                   <h4 className={styles.panelTitle}>Катастрофа</h4>
-                  <span className={styles.panelBadge}>Скоро</span>
+                  <span className={styles.panelBadge}>Опасность</span>
                 </div>
-                <p className={styles.futureNote}>
-                  Здесь будет отображаться сценарий катастрофы. Блок уже встроен в
-                  композицию страницы, поэтому после добавления логики экран
-                  сохранит аккуратную структуру.
-                </p>
+
+                {!disasterData ? (
+                  <p className={styles.futureNote}>
+                    Здесь будет отображаться сценарий катастрофы.
+                  </p>
+                ) : (
+                  <p className={styles.disasterText}>{disasterData}</p>
+                )}
               </div>
 
               <div className={styles.panel}>
@@ -210,7 +217,7 @@ export default function GamePage() {
                           <span className={styles.playerIndex}>
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <span>Игрок {index + 1}</span>
+                          <span className={styles.playerName}>Игрок {index + 1}</span>
                         </div>
                         <a
                           href={`/game/${gameId}/player/${card.playerId}`}
